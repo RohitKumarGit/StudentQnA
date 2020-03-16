@@ -13,6 +13,8 @@ import Home from "./Home";
 import Login from "./Login";
 import Error from "./Error";
 
+import "./style.css";
+
 function Navbar() {
   return (
     <div>
