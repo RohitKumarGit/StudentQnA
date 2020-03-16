@@ -12,6 +12,7 @@ class Login extends React.Component {
       email: "",
       password: ""
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,8 +28,11 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("A name was submitted: " + this.state.email);
     event.preventDefault();
+
+    console.log(
+      `The form was submitted: ${this.state.email} - ${this.state.password}`
+    );
   }
 
   render() {
