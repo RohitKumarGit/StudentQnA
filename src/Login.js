@@ -1,10 +1,6 @@
-class Login extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>About...</h1>
-      </div>
-    );
-  }
+import React from "react";
+
+function Login() {
+  return <p>login</p>;
 }
 export default Login;
