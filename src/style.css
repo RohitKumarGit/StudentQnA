@@ -78,7 +78,6 @@ body {
 .navbar__link {
   text-decoration: none;
   color: #333;
-  font-size: 1.05rem;
 }
 
 /* FORM */
@@ -110,6 +109,7 @@ body {
   margin-bottom: 10px;
   display: block;
   color: #484848;
+  font-weight: 600;
 }
 
 .form__input {
