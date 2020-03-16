@@ -25,24 +25,24 @@ function Navbar() {
   return (
     <header class="navbar-wrapper">
       <nav class="navbar">
-        <a href="#" class="navbar__title">
+        <Link to="/" class="navbar__title">
           Title
-        </a>
+        </Link>
         <ul class="navbar__items">
           <li class="navbar__item">
-            <a href="" class="navbar__link">
+            <Link to="/" class="navbar__link">
               Home
-            </a>
+            </Link>
           </li>
           <li class="navbar__item">
-            <a href="" class="navbar__link">
+            <Link to="/login" class="navbar__link">
               Login
-            </a>
+            </Link>
           </li>
           <li class="navbar__item">
-            <a href="" class="navbar__link">
+            <Link to="/signup" class="navbar__link">
               Sign up
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
