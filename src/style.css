@@ -8,9 +8,72 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+  /* position: relative; */
+}
+
 body {
   color: #222;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+/* CONTAINERS */
+
+#root {
+  height: 100%;
+}
+
+.main-container {
+  height: 100%;
+}
+
+.main-content {
+  min-height: calc(100% - 80px);
+}
+
+.main-content--center {
+  display: flex;
+  align-items: center;
+}
+
+/* NAVIGATION */
+
+.navbar-wrapper {
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.navbar {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+
+.navbar__title {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.navbar__items {
+  margin-left: auto;
+  list-style-type: none;
+  display: flex;
+}
+
+.navbar__item {
+  padding-left: 30px;
+}
+
+.navbar__link {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.05rem;
 }
 
 /* FORM */

@@ -16,26 +16,52 @@ import Error from "./Error";
 import "./style.css";
 
 function Navbar() {
+  //   return (
+  //     <div>
+  //       <Link to="/">Home</Link>
+  //       <Link to="/login">Login</Link>
+  //     </div>
+  //   );
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-    </div>
+    <header class="navbar-wrapper">
+      <nav class="navbar">
+        <a href="#" class="navbar__title">
+          Title
+        </a>
+        <ul class="navbar__items">
+          <li class="navbar__item">
+            <a href="" class="navbar__link">
+              Home
+            </a>
+          </li>
+          <li class="navbar__item">
+            <a href="" class="navbar__link">
+              Login
+            </a>
+          </li>
+          <li class="navbar__item">
+            <a href="" class="navbar__link">
+              Sign up
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 }
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <main>
+    <>
+      <main class="main-container">
+        <Navbar />
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/login" component={Login} />
           <Route component={Error} />
         </Switch>
       </main>
-    </div>
+    </>
   );
 }
 
