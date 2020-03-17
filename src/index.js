@@ -7,49 +7,15 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import Navbar from "./Navbar";
 import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
 import Error from "./Error";
 
 import "./style.css";
-
-function Navbar() {
-
-
-  return (
-    
-    <header class="navbar-wrapper">
-      <style>
-          @import url('https://fonts.googleapis.com/css?family=Cabin:500&display=swap');
-      </style>
-      <nav class="navbar">
-        <Link to="/" class="navbar__title">
-          Title
-        </Link>
-        <ul class="navbar__items">
-          <li class="navbar__item">
-            <Link to="/" class="navbar__link">
-              Home
-            </Link>
-          </li>
-          <li class="navbar__item">
-            <Link to="/login" class="navbar__link">
-              Login
-            </Link>
-          </li>
-          <li class="navbar__item">
-            <Link to="/signup" class="navbar__link">
-              Sign up
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  );
-}
 
 function App() {
   return (
