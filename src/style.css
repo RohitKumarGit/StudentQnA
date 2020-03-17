@@ -148,7 +148,7 @@ body {
 }
 
 .form__input:focus {
-  border-color: var(--primary-color);
+  /* border-color: var(--primary-color); */
 }
 
 .form__info {
