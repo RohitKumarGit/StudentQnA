@@ -56,8 +56,11 @@ body {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  height: 80px;
+  height: 55px;
+  font-family: 'Cabin', sans-serif;
+  text-transform: uppercase;
 }
+
 
 .navbar__title {
   text-decoration: none;
@@ -69,15 +72,51 @@ body {
   margin-left: auto;
   list-style-type: none;
   display: flex;
+  height: 100%;
+  
 }
 
 .navbar__item {
-  padding-left: 30px;
+  margin-left: 30px;
+  justify-content: center;
+  
+  
+ 
+  height: 100%;
+  
+  
 }
-
+.navbar__item::after{
+  content: "";
+  background: var(--primary-color);
+  height: 2px;
+  width: 100%;
+  display: block;
+  flex-grow: 1;
+  transform: scaleX(0);
+  
+  transition: all .10s ease-out;
+}
+.navbar__item:hover::after{
+  content: "";
+  background: var(--primary-color);
+  height: 3px;
+  width: 100%;
+  display: block;
+  
+  transform: scaleX(1);
+}
 .navbar__link {
   text-decoration: none;
   color: #333;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s ease-out;
+}
+.navbar__link:hover{
+ color: var(--primary-color);
 }
 
 /* FORM */

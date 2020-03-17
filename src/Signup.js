@@ -79,31 +79,7 @@ export default class Signup extends React.Component {
             <h1>Sign Up</h1>
           </header>
 
-          <div class="form__group">
-            <p class="form__radio-info">Please select your role:</p>
-            <label class="form__radio-label">
-              <input
-                class="form__radio"
-                type="radio"
-                name="role"
-                value="student"
-                checked={this.state.role === "student"}
-                onChange={this.handleOptionChange}
-              />
-              Student
-            </label>
-            <label class="form__radio-label">
-              <input
-                class="form__radio"
-                type="radio"
-                name="role"
-                value="expert"
-                checked={this.state.role === "expert"}
-                onChange={this.handleOptionChange}
-              />
-              Expert
-            </label>
-          </div>
+          
 
           <div class="form__group">
             <label class="form__label">Name</label>
