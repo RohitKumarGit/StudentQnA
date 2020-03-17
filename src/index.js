@@ -17,8 +17,14 @@ import Error from "./Error";
 import "./style.css";
 
 function Navbar() {
+
+
   return (
+    
     <header class="navbar-wrapper">
+      <style>
+          @import url('https://fonts.googleapis.com/css?family=Cabin:500&display=swap');
+      </style>
       <nav class="navbar">
         <Link to="/" class="navbar__title">
           Title

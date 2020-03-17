@@ -47,7 +47,13 @@ export default class Signup extends React.Component {
         <>
           <div class="form__group">
             <label class="form__label">Class studying</label>
-            <input class="form__input" type="text" name="class" />
+            
+            <select id="cars" className="form__input">
+  <option value="volvo">XI</option>
+  <option value="saab">XII</option>
+  <option value="mercedes">X</option>
+  
+</select>
           </div>
         </>
       );
@@ -55,7 +61,7 @@ export default class Signup extends React.Component {
       formContent = (
         <>
           <div class="form__group">
-            <label class="form__label">Collage</label>
+            <label class="form__label">College</label>
             <input class="form__input" type="text" name="collage" />
           </div>
 
@@ -66,7 +72,13 @@ export default class Signup extends React.Component {
 
           <div class="form__group">
             <label class="form__label">Year of admission</label>
-            <input class="form__input" type="text" name="class" />
+            <select id="cars" className="form__input">
+            <option value="volvo">2020</option>
+  <option value="volvo">2019</option>
+  <option value="saab">2017</option>
+  <option value="mercedes">2016</option>
+  <option value="mercedes">2015</option>
+</select>
           </div>
         </>
       );
@@ -81,6 +93,7 @@ export default class Signup extends React.Component {
 
           <div class="form__group">
             <p class="form__radio-info">Please select your role:</p>
+            <div className="fl">
             <label class="form__radio-label">
               <input
                 class="form__radio"
@@ -90,7 +103,7 @@ export default class Signup extends React.Component {
                 checked={this.state.role === "student"}
                 onChange={this.handleOptionChange}
               />
-              Student
+              STUDENT
             </label>
             <label class="form__radio-label">
               <input
@@ -101,8 +114,9 @@ export default class Signup extends React.Component {
                 checked={this.state.role === "expert"}
                 onChange={this.handleOptionChange}
               />
-              Expert
+              EXPERT
             </label>
+            </div>
           </div>
 
           <div class="form__group">
