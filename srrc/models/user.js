@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema({
     points : {
         type:Number,
         default:500
+    },
+    class:{
+        type:String,
+        default:"college"
     }
 });
 

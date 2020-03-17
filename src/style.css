@@ -162,7 +162,9 @@ body {
 .form__info {
   margin-top: 35px;
 }
-
+.fl{
+  display: flex;
+}
 .form__radio-info {
   margin-bottom: 15px;
   font-size: 1rem;
@@ -173,6 +175,7 @@ body {
   font-size: 0.95rem;
   display: block;
   margin-bottom: 7px;
+  width: 50%;
 }
 
 .form__radio {
