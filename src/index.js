@@ -1,20 +1,16 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
-
-// import App from "./App";
-
-// ReactDOM.render(<App />, document.getElementById("root"));
-
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+// Comonents
 import Navbar from "./Navbar";
 import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
+import Profile from "./Profile";
 import Error from "./Error";
 
+// Stylesheet
 import "./style.css";
 
 function App() {
@@ -26,6 +22,7 @@ function App() {
           <Route path="/" component={Home} exact />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/profile/:id" component={Profile} exact />
           <Route component={Error} />
         </Switch>
       </main>
