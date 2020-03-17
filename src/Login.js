@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Login extends React.Component {
+class Login extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       email: "",
       password: ""
@@ -13,6 +14,8 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  validateForm() {}
+
   handleChange(event) {
     const target = event.target;
     const name = target.name;
@@ -21,6 +24,34 @@ class Login extends React.Component {
     this.setState({
       [name]: value
     });
+
+    const formHelperElement = target.parentElement.querySelector(
+      ".form__helper"
+    );
+
+    switch (name) {
+      case "email":
+        if (value.length === 0) {
+          formHelperElement.innerText = "Please enter your username.";
+          target.setCustomValidity("Please enter your username.");
+        } else {
+          formHelperElement.innerText = "";
+          target.setCustomValidity("");
+        }
+
+        break;
+
+      case "password":
+        if (value.length === 0) {
+          formHelperElement.innerText = "Please enter your password.";
+          target.setCustomValidity("Please enter your password.");
+        } else {
+          formHelperElement.innerText = "";
+          target.setCustomValidity("");
+        }
+
+        break;
+    }
   }
 
   handleSubmit(event) {
@@ -48,6 +79,7 @@ class Login extends React.Component {
               value={this.state.email}
               onChange={this.handleChange}
             />
+            <span class="form__helper"></span>
           </div>
 
           <div class="form__group">
@@ -59,6 +91,7 @@ class Login extends React.Component {
               value={this.state.password}
               onChange={this.handleChange}
             />
+            <span class="form__helper"></span>
           </div>
 
           <div class="form__group">

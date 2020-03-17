@@ -148,7 +148,26 @@ body {
 }
 
 .form__input:focus {
-  /* border-color: var(--primary-color); */
+  border-color: var(--primary-color);
+}
+
+.form__input:invalid {
+  box-shadow: none;
+  border-color: #ec5f5f;
+}
+
+.form__helper {
+  display: block;
+  margin-top: 7px;
+  font-size: 0.9rem;
+  color: #ec5f5f;
+  opacity: 1;
+  transition: all 0.1s ease-in-out;
+}
+
+.form__helper:empty {
+  margin-top: 0;
+  opacity: 0;
 }
 
 .form__info {
