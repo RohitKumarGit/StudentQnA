@@ -3,7 +3,10 @@ const userSchema = new mongoose.Schema({
     name : String,
     email:String,
     role:String,
-    college:String,
+    college:{
+        type:String,
+        default:"none"
+    },
     profileUrl:String,
     points : {
         type:Number,
@@ -12,6 +15,14 @@ const userSchema = new mongoose.Schema({
     class:{
         type:String,
         default:"college"
+    },
+    branch:{
+        type:String,
+        default:"none"
+    },
+    yearOfAdmission:{
+        type:String,
+        default:"none"
     }
 });
 
