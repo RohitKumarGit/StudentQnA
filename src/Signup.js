@@ -5,7 +5,8 @@ export default class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      role: "student"
+      role: "student",
+      colleges:['A','B','C']
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -49,9 +50,9 @@ export default class Signup extends React.Component {
             <label class="form__label">Class studying</label>
             
             <select id="cars" className="form__input">
-  <option value="volvo">XI</option>
-  <option value="saab">XII</option>
-  <option value="mercedes">X</option>
+  <option value="XI">XI</option>
+  <option value="XII">XII</option>
+  <option value="X">X</option>
   
 </select>
           </div>
@@ -62,7 +63,18 @@ export default class Signup extends React.Component {
         <>
           <div class="form__group">
             <label class="form__label">College</label>
-            <input class="form__input" type="text" name="collage" />
+          
+            <select id="cars" className="form__input">
+            <React.Fragment>
+            {this.state.colleges.map(college => (
+            <option key={college}>{college}</option>
+             
+            
+          ))}
+            </React.Fragment>
+  
+</select>
+            
           </div>
 
           <div class="form__group">
