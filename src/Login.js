@@ -57,6 +57,9 @@ class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    // TODO: Check if form is valid
+    // TODO: Attempt to authorize user
+
     console.log(
       `The form was submitted: ${this.state.email} - ${this.state.password}`
     );
