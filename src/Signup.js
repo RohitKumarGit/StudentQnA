@@ -6,7 +6,7 @@ export default class Signup extends React.Component {
     super(props);
     this.state = {
       role: "student",
-      colleges:['A','B','C']
+      colleges: ["A", "B", "C"]
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -48,13 +48,12 @@ export default class Signup extends React.Component {
         <>
           <div class="form__group">
             <label class="form__label">Class studying</label>
-            
+
             <select id="cars" className="form__input">
-  <option value="XI">XI</option>
-  <option value="XII">XII</option>
-  <option value="X">X</option>
-  
-</select>
+              <option value="XI">XI</option>
+              <option value="XII">XII</option>
+              <option value="X">X</option>
+            </select>
           </div>
         </>
       );
@@ -63,18 +62,7 @@ export default class Signup extends React.Component {
         <>
           <div class="form__group">
             <label class="form__label">College</label>
-          
-            <select id="cars" className="form__input">
-            <React.Fragment>
-            {this.state.colleges.map(college => (
-            <option key={college}>{college}</option>
-             
-            
-          ))}
-            </React.Fragment>
-  
-</select>
-            
+            <input class="form__input" type="text" name="collage" />
           </div>
 
           <div class="form__group">
@@ -85,12 +73,12 @@ export default class Signup extends React.Component {
           <div class="form__group">
             <label class="form__label">Year of admission</label>
             <select id="cars" className="form__input">
-            <option value="volvo">2020</option>
-  <option value="volvo">2019</option>
-  <option value="saab">2017</option>
-  <option value="mercedes">2016</option>
-  <option value="mercedes">2015</option>
-</select>
+              <option value="volvo">2020</option>
+              <option value="volvo">2019</option>
+              <option value="saab">2017</option>
+              <option value="mercedes">2016</option>
+              <option value="mercedes">2015</option>
+            </select>
           </div>
         </>
       );
@@ -106,28 +94,28 @@ export default class Signup extends React.Component {
           <div class="form__group">
             <p class="form__radio-info">Please select your role:</p>
             <div className="fl">
-            <label class="form__radio-label">
-              <input
-                class="form__radio"
-                type="radio"
-                name="role"
-                value="student"
-                checked={this.state.role === "student"}
-                onChange={this.handleOptionChange}
-              />
-              STUDENT
-            </label>
-            <label class="form__radio-label">
-              <input
-                class="form__radio"
-                type="radio"
-                name="role"
-                value="expert"
-                checked={this.state.role === "expert"}
-                onChange={this.handleOptionChange}
-              />
-              EXPERT
-            </label>
+              <label class="form__radio-label">
+                <input
+                  class="form__radio"
+                  type="radio"
+                  name="role"
+                  value="student"
+                  checked={this.state.role === "student"}
+                  onChange={this.handleOptionChange}
+                />
+                Student
+              </label>
+              <label class="form__radio-label">
+                <input
+                  class="form__radio"
+                  type="radio"
+                  name="role"
+                  value="expert"
+                  checked={this.state.role === "expert"}
+                  onChange={this.handleOptionChange}
+                />
+                Expert
+              </label>
             </div>
           </div>
 
