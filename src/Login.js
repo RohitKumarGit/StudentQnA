@@ -36,6 +36,8 @@ class Login extends Component {
         }
       }
 
+      form.email.setCustomValidity(emailErr);
+
       this.setState({
         emailErr: emailErr
       });
@@ -48,6 +50,8 @@ class Login extends Component {
         passwordErr = "Please enter your password.";
         valid = false;
       }
+
+      form.email.setCustomValidity(passwordErr);
 
       this.setState({
         passwordErr: passwordErr
