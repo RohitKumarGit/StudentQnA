@@ -51,7 +51,7 @@ class Login extends Component {
         valid = false;
       }
 
-      form.email.setCustomValidity(passwordErr);
+      form.password.setCustomValidity(passwordErr);
 
       this.setState({
         passwordErr: passwordErr
