@@ -36,8 +36,20 @@ userSchema.statics.getUser = async function(email){
     return user;
 }
 userSchema.statics.createUser = async function(details){
-    const user = new User(details);
-    await user.save()
+    const ms = await User.find({email:details.email});
+    console.log('yes',ms);
+    if(ms.length == 0){
+        const user = new User(details);
+        await user.save()
+        console.log("no error")
+        return false;
+        
+    }
+    else{
+        console.log("has error")
+        return true
+    }
+    
 }
 userSchema.statics.deductPoint = async function(email,point){
    

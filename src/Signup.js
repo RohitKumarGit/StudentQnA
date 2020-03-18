@@ -62,26 +62,36 @@ export default class Signup extends React.Component {
       }
       
     }
-    console.log(req)
     
+    
+    let error=false;
     firebase.auth().createUserWithEmailAndPassword(req.email, event.target.password.value).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
+      
+     
       console.log(errorCode,errorMessage);
+      error=true;
     });
+    
     var n =0;
     firebase.auth().onAuthStateChanged(function(user) {
-      console.log(n)
-      console.log(n===0)
-      if (user && n === 0) {
+     
+      if (user && n === 0 && error === false) {
         
-        axios.post('/createuser',req).then(()=>{
-          console.log("success");
-          n++;
-          axios.get('/user/'+req.email).then(function(response){
-            console.log(response.data) // this response.data conatins all the user info 
-          }).catch((e)=>{console.log(e)})
+        axios.post('/createuser',req).then((res)=>{
+          
+          if(res.data === true){
+            console.log("user already exists in db") // IF res.data is true then user already exists
+          }
+          else {
+            console.log("success");
+            n++;
+            axios.get('/user/'+req.email).then(function(response){
+              console.log(response.data) // this response.data conatins all the user info 
+            }).catch((e)=>{console.log(e)})
+          }
       }).catch((e)=>{
           console.log(e)
         })

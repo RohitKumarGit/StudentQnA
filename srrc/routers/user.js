@@ -1,8 +1,8 @@
 const Router = new require('express').Router();
 const User = require('../models/user');
 Router.post('/createuser',async (req,res)=>{
-    User.createUser(req.body)
-    res.send()
+    const error =await User.createUser(req.body)
+    res.send(error);
 });
 Router.get('/user/:email',async (req,res)=>{
     console.log("user..")
