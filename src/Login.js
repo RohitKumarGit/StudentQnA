@@ -77,11 +77,15 @@ class Login extends Component {
         axios.get('/user/'+email).then((response)=>{
           console.log("logged")
           set(response.data)
+          console.log(response.data) // if the user is logged response.data has all the user details
           m.setState({user:response.data})
         }).catch((e)=>{
           console.log(e)
         });
       } 
+      else{
+        // if user is not logged
+      }
     });
     console.log(
       `The form was submitted: ${this.state.email} - ${this.state.password}`
