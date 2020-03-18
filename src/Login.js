@@ -99,7 +99,7 @@ class Login extends Component {
 
           <div class="form__group">
             <p>
-              <Link class="link" to="/reset-password">
+              <Link class="link" to="/password-reset">
                 I forgot my password
               </Link>
             </p>
