@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
+const firebase = require('firebase')
+const axios = require('axios')
 export default class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +37,66 @@ export default class Signup extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log("signing..");
+    var req;
+    if(this.state.role == 'student'){
+      console.log("student")
+       req = {
+        name:event.target.name.value,
+        email:event.target.email.value,
+        role:event.target.role.value,
+        profileUrl:"none",
+        class:document.getElementById('class').value
+      }
+       
+    }
+    else {
+       req = {
+        name:event.target.name.value,
+        email:event.target.email.value,
+        role:event.target.role.value,
+        profileUrl:"none",
+        yearOfAdmission:document.getElementById('year').value,
+        branch:event.target.branch.value
 
+      }
+      
+    }
+    
+    
+    let error=false;
+    firebase.auth().createUserWithEmailAndPassword(req.email, event.target.password.value).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      
+     
+      console.log(errorCode,errorMessage);
+      error=true;
+    });
+    
+    var n =0;
+    firebase.auth().onAuthStateChanged(function(user) {
+     
+      if (user && n === 0 && error === false) {
+        
+        axios.post('/createuser',req).then((res)=>{
+          
+          if(res.data === true){
+            console.log("user already exists in db") // IF res.data is true then user already exists
+          }
+          else {
+            console.log("success");
+            n++;
+            axios.get('/user/'+req.email).then(function(response){
+              console.log(response.data) // this response.data conatins all the user info 
+            }).catch((e)=>{console.log(e)})
+          }
+      }).catch((e)=>{
+          console.log(e)
+        })
+      } 
+    }); 
     console.log(
       `The form was submitted: ${this.state.email} - ${this.state.password}`
     );
@@ -49,7 +111,7 @@ export default class Signup extends React.Component {
           <div class="form__group">
             <label class="form__label">Class studying</label>
 
-            <select id="cars" className="form__input">
+            <select id="class" className="form__input">
               <option value="XI">XI</option>
               <option value="XII">XII</option>
               <option value="X">X</option>
@@ -62,17 +124,17 @@ export default class Signup extends React.Component {
         <>
           <div class="form__group">
             <label class="form__label">College</label>
-            <input class="form__input" type="text" name="collage" />
+            <input class="form__input" type="text" name="college" />
           </div>
 
           <div class="form__group">
             <label class="form__label">Branch</label>
-            <input class="form__input" type="text" name="class" />
+            <input class="form__input" type="text" name="branch" />
           </div>
 
           <div class="form__group">
             <label class="form__label">Year of admission</label>
-            <select id="cars" className="form__input">
+            <select id="year" className="form__input">
               <option value="volvo">2020</option>
               <option value="volvo">2019</option>
               <option value="saab">2017</option>
@@ -86,7 +148,7 @@ export default class Signup extends React.Component {
 
     return (
       <main class="main-content main-content--center">
-        <form class="form">
+        <form class="form" onSubmit={this.handleSubmit}>
           <header class="form__header">
             <h1>Sign Up</h1>
           </header>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+const axios = require('axios');
+const firebase = require('firebase');
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -59,7 +60,33 @@ class Login extends Component {
 
     // TODO: Check if form is valid
     // TODO: Attempt to authorize user
-
+    const email = event.target.email.value;
+    firebase.auth().signInWithEmailAndPassword(event.target.email.value, event.target.password.value).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+      console.log(errorCode,errorMessage);
+    });
+    const set = function(data){
+      
+    }
+    const m = this
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        axios.get('/user/'+email).then((response)=>{
+          console.log("logged")
+          set(response.data)
+          console.log(response.data) // if the user is logged response.data has all the user details
+          m.setState({user:response.data})
+        }).catch((e)=>{
+          console.log(e)
+        });
+      } 
+      else{
+        // if user is not logged
+      }
+    });
     console.log(
       `The form was submitted: ${this.state.email} - ${this.state.password}`
     );
