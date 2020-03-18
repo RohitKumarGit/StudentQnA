@@ -3,15 +3,31 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Comonents
+
 import Navbar from "./Navbar";
 import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
 import Profile from "./Profile";
 import Error from "./Error";
-
-// Stylesheet
 import "./style.css";
+const firebase = require('firebase');
+
+let firebaseConfig = {
+  apiKey: "AIzaSyB6fHJLK895282ymZUFn1GHCoa58eR8Bg0",
+  authDomain: "studentqna-d44ff.firebaseapp.com",
+  databaseURL: "https://studentqna-d44ff.firebaseio.com",
+  projectId: "studentqna-d44ff",
+  storageBucket: "studentqna-d44ff.appspot.com",
+  messagingSenderId: "84493747418",
+  appId: "1:84493747418:web:052528d8fb89e5add4d1e3",
+  measurementId: "G-W2P5T2V3S2"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+// Stylesheet
+
 
 function App() {
   return (
