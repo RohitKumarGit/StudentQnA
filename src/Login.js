@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+const axios = require('axios');
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -59,7 +59,6 @@ class Login extends Component {
 
     // TODO: Check if form is valid
     // TODO: Attempt to authorize user
-
     console.log(
       `The form was submitted: ${this.state.email} - ${this.state.password}`
     );
