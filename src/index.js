@@ -11,7 +11,8 @@ import Signup from "./Signup";
 import Profile from "./Profile";
 import Error from "./Error";
 import "./style.css";
-const firebase = require('firebase');
+import ExpertProfile from "./ExpertProfile";
+const firebase = require("firebase");
 
 let firebaseConfig = {
   apiKey: "AIzaSyB6fHJLK895282ymZUFn1GHCoa58eR8Bg0",
@@ -28,7 +29,6 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 // Stylesheet
 
-
 function App() {
   return (
     <>
@@ -39,6 +39,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/profile/:id" component={Profile} exact />
+          <Route path="/expert-profile" component={ExpertProfile} />
           <Route component={Error} />
         </Switch>
       </main>

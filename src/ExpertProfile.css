@@ -1,0 +1,38 @@
+.ui.container {
+  margin-top: 30px;
+}
+
+.ui.mini.image {
+  width: 45px;
+}
+
+.ui.mini.image img {
+  /* border-radius: 50% !important; */
+}
+
+.ui.primary.button {
+  background-color: var(--primary-color);
+}
+
+.ui.primary.button:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.ui.secondary.button {
+  color: #4176f4;
+  background-color: #e9f2ff;
+}
+
+.dropdown--date {
+  float: right;
+  margin: 0.78571429em;
+}
+
+.button--answer {
+  float: right;
+}
+
+a.ui.label {
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
+}

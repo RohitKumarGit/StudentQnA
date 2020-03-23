@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 const axios = require("axios");
 const firebase = require("firebase");
-class Login extends Component {
+
+export default class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -74,33 +76,7 @@ class Login extends Component {
       ".form__helper"
     );
 
-    // console.log(event.target);
-
     this.validateForm(event.target.form, name);
-
-    // switch (name) {
-    //   case "email":
-    //     if (value.length === 0) {
-    //       formHelperElement.innerText = "Please enter your username.";
-    //       target.setCustomValidity("Please enter your username.");
-    //     } else {
-    //       formHelperElement.innerText = "";
-    //       target.setCustomValidity("");
-    //     }
-
-    //     break;
-
-    //   case "password":
-    //     if (value.length === 0) {
-    //       formHelperElement.innerText = "Please enter your password.";
-    //       target.setCustomValidity("Please enter your password.");
-    //     } else {
-    //       formHelperElement.innerText = "";
-    //       target.setCustomValidity("");
-    //     }
-
-    //     break;
-    // }
   }
 
   handleSubmit(event) {
@@ -217,4 +193,3 @@ class Login extends Component {
     );
   }
 }
-export default Login;
