@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { Grid, Form, Header, Button } from "semantic-ui-react";
+
 const axios = require("axios");
 const firebase = require("firebase");
 
@@ -138,83 +140,35 @@ export default class Login extends Component {
 
   render() {
     return (
-      // <div class="main-content main-content--center">
-      <div class="ui grid middle aligned main-content">
-        {/* <div class="row"> */}
-        <div class="column">
-          <form class="ui form">
-            <h2 class="ui header">Login</h2>
-            <div class="field">
+      <Grid middle aligned verticalAlign="middle" className="main-content">
+        <Grid.Column>
+          <Form>
+            <Header as="h2">Login</Header>
+
+            <Form.Field>
               <label>Email</label>
               <input type="email" name="email" />
-            </div>
-            <div class="field">
+            </Form.Field>
+
+            <Form.Field>
               <label>Password</label>
               <input type="password" name="password" />
-            </div>
-            <div class="field">
+            </Form.Field>
+
+            <Form.Field>
               <a href="/password-reset">I forgot my password</a>
-            </div>
-            <button class="fluid ui primary button" type="submit">
+            </Form.Field>
+
+            <Button fluid primary type="submit">
               Login
-            </button>
+            </Button>
+
             <p>
               Don't have an account? <a href="/signup">Sign up</a>.
             </p>
-          </form>
-          {/* </div> */}
-        </div>
-        {/* <form onSubmit={this.handleSubmit} class="form">
-          <header class="form__header">
-            <h1>Login</h1>
-          </header>
-
-          <div class="form__group">
-            <label class="form__label">Email</label>
-            <input
-              class="form__input"
-              type="text"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-            <span class="form__helper">{this.state.emailErr}</span>
-          </div>
-
-          <div class="form__group">
-            <label class="form__label">Password</label>
-            <input
-              class="form__input"
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-            <span class="form__helper">{this.state.passwordErr}</span>
-          </div>
-
-          <div class="form__group">
-            <p>
-              <Link class="link" to="/password-reset">
-                I forgot my password
-              </Link>
-            </p>
-          </div>
-
-          <div class="form__group">
-            <input class="btn" type="submit" value="Login" />
-            <span class="form__helper">{this.state.formErr}</span>
-          </div>
-
-          <p class="form__info">
-            Don't have an account?{" "}
-            <Link class="link" to="/signup">
-              Sign up
-            </Link>
-            .
-          </p>
-        </form> */}
-      </div>
+          </Form>
+        </Grid.Column>
+      </Grid>
     );
   }
 }

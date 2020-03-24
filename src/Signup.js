@@ -108,17 +108,15 @@ export default class Signup extends React.Component {
 
     if (this.state.role === "student") {
       formContent = (
-        <>
-          <div class="form__group">
-            <label class="form__label">Class studying</label>
-
-            <select id="class" className="form__input">
-              <option value="XI">XI</option>
-              <option value="XII">XII</option>
-              <option value="X">X</option>
-            </select>
-          </div>
-        </>
+        <div class="field">
+          <label>Country</label>
+          <select class="ui search dropdown">
+            <option value="">Select Country</option>
+            <option value="XI">XI</option>
+            <option value="XII">XII</option>
+            <option value="X">X</option>
+          </select>
+        </div>
       );
     } else {
       formContent = (
@@ -148,79 +146,64 @@ export default class Signup extends React.Component {
     }
 
     return (
-      <main class="main-content main-content--center">
-        <form class="form" onSubmit={this.handleSubmit}>
-          <header class="form__header">
-            <h1>Sign Up</h1>
-          </header>
-
-          <div class="form__group">
-            <p class="form__radio-info">Please select your role:</p>
-            <div className="fl">
-              <label class="form__radio-label">
-                <input
-                  class="form__radio"
-                  type="radio"
-                  name="role"
-                  value="student"
-                  checked={this.state.role === "student"}
-                  onChange={this.handleOptionChange}
-                />
-                Student
-              </label>
-              <label class="form__radio-label">
-                <input
-                  class="form__radio"
-                  type="radio"
-                  name="role"
-                  value="expert"
-                  checked={this.state.role === "expert"}
-                  onChange={this.handleOptionChange}
-                />
-                Expert
-              </label>
+      <div class="ui grid middle aligned main-content">
+        {/* <div class="row"> */}
+        <div class="column">
+          <form class="ui form">
+            <h2 class="ui header">Sign Up</h2>
+            <div class="inline fields">
+              <label for="fruit">Please select your role:</label>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input
+                    type="radio"
+                    name="student"
+                    tabindex="0"
+                    class="hidden"
+                  />
+                  <label>Student</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input
+                    type="radio"
+                    name="expert"
+                    tabindex="0"
+                    class="hidden"
+                  />
+                  <label>Expert</label>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="form__group">
-            <label class="form__label">Name</label>
-            <input class="form__input" type="text" name="name" />
-          </div>
+            {formContent}
 
-          <div class="form__group">
-            <label class="form__label">Email</label>
-            <input class="form__input" type="text" name="email" />
-          </div>
-
-          {formContent}
-
-          <div class="form__group">
-            <label class="form__label">Password</label>
-            <input class="form__input" type="password" name="password" />
-          </div>
-
-          <div class="form__group">
-            <label class="form__label">Confirm password</label>
-            <input
-              class="form__input"
-              type="password"
-              name="confirm-password"
-            />
-          </div>
-
-          <div class="form__group">
-            <input class="btn" type="submit" value="Sign up" />
-          </div>
-
-          <p class="form__info">
-            Already have an account?{" "}
-            <Link class="link" to="/login">
-              Login
-            </Link>
-            .
-          </p>
-        </form>
-      </main>
+            <div class="field">
+              <label>Name</label>
+              <input type="email" name="email" />
+            </div>
+            <div class="field">
+              <label>Email</label>
+              <input type="password" name="password" />
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" name="password" />
+            </div>
+            <div class="field">
+              <label>Confirm Password</label>
+              <input type="password" name="password" />
+            </div>
+            <button class="fluid ui primary button" type="submit">
+              Sign up
+            </button>
+            <p>
+              Already have an account? <a href="/login">Login</a>.
+            </p>
+          </form>
+        </div>
+      </div>
     );
   }
 }
