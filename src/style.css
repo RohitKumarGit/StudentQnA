@@ -17,7 +17,6 @@ body {
 
 body {
   color: #222;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
   font-size: 100%;
   /* background-color: #fafafa; */
 }
@@ -33,12 +32,17 @@ body {
 }
 
 .main-content {
+  min-height: calc(100% - 50px);
+  /* width: 90%; */
+}
+
+/* .main-content {
   min-height: calc(100% - 80px);
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 50px 0;
-}
+} */
 
 .main-content--center {
   display: flex;
@@ -112,7 +116,7 @@ body {
 /* FORM */
 
 .form {
-  width: 400px;
+  max-width: 400px !important;
   margin: 0 auto;
 }
 
@@ -410,4 +414,51 @@ body {
 .chip .mdi {
   margin-left: -5px;
   margin-right: 5px;
+}
+
+/* NEW CSS BEGIN */
+
+.ui.container {
+  margin-top: 30px;
+}
+
+.ui.mini.image {
+  width: 45px;
+}
+
+.ui.mini.image img {
+  /* border-radius: 50% !important; */
+}
+
+.ui.primary.button {
+  background-color: var(--primary-color);
+}
+
+.ui.primary.button:hover {
+  background-color: var(--primary-color-hover);
+}
+
+/* TODO: Make lighter */
+.ui.primary.button:active,
+.ui.primary.button:focus {
+  background-color: var(--primary-color-hover);
+}
+
+.ui.secondary.button {
+  color: #4176f4;
+  background-color: #e9f2ff;
+}
+
+.dropdown--date {
+  float: right;
+  margin: 0.78571429em;
+}
+
+.button--answer {
+  float: right;
+}
+
+a.ui.label {
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
 }

@@ -138,8 +138,33 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div class="main-content main-content--center">
-        <form onSubmit={this.handleSubmit} class="form">
+      // <div class="main-content main-content--center">
+      <div class="ui grid middle aligned main-content">
+        {/* <div class="row"> */}
+        <div class="column">
+          <form class="ui form">
+            <h2 class="ui header">Login</h2>
+            <div class="field">
+              <label>Email</label>
+              <input type="email" name="email" />
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" name="password" />
+            </div>
+            <div class="field">
+              <a href="/password-reset">I forgot my password</a>
+            </div>
+            <button class="fluid ui primary button" type="submit">
+              Login
+            </button>
+            <p>
+              Don't have an account? <a href="/signup">Sign up</a>.
+            </p>
+          </form>
+          {/* </div> */}
+        </div>
+        {/* <form onSubmit={this.handleSubmit} class="form">
           <header class="form__header">
             <h1>Login</h1>
           </header>
@@ -188,7 +213,7 @@ export default class Login extends Component {
             </Link>
             .
           </p>
-        </form>
+        </form> */}
       </div>
     );
   }
