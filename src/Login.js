@@ -140,22 +140,12 @@ export default class Login extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      // <div class="main-content main-content--center">
-      <div class="ui grid middle aligned main-content">
-        {/* <div class="row"> */}
-        <div class="column">
-          <form class="ui form" onSubmit={this.handleSubmit}>
-            <h2 class="ui header">Login</h2>
-            <div class="field">
-=======
-      <Grid middle aligned verticalAlign="middle" className="main-content">
+      <Grid middle aligned verticalAlign="middle" className="main-content" onSubmit={this.handleSubmit}>
         <Grid.Column>
           <Form>
             <Header as="h2">Login</Header>
 
             <Form.Field>
->>>>>>> 0474b4d3f84ddee75a59ec971ea5cb0ff842bb58
               <label>Email</label>
               <input type="email" name="email" />
             </Form.Field>
