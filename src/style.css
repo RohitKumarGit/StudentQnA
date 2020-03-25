@@ -1,7 +1,7 @@
 :root {
   --primary-color: rgb(100, 0, 228);
   --primary-color-hover: rgb(126, 26, 254);
-  --error-color: ;
+  --error-color: #ec5f5f;
 }
 
 html,
@@ -32,7 +32,7 @@ body {
 
 .form__helper {
   display: block;
-  color: #ec5f5f;
+  color: var(--error-color);
   margin-top: 7px;
   opacity: 1;
   transition: all 0.1s ease-in-out;
@@ -41,6 +41,14 @@ body {
 .form__helper:empty {
   margin-top: 0;
   opacity: 0;
+}
+
+.ui.form input:focus {
+  border-color: var(--primary-color) !important;
+}
+
+.ui.form input:invalid {
+  border-color: var(--error-color) !important;
 }
 
 .ui.form .fields > .field {
