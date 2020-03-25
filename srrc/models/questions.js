@@ -37,8 +37,9 @@ questionsSchema.statics.getQuestions = async function(email){
     const questions = await Question.find({email})
     return questions
 }
-questionsSchema.methods.getAllQuestions = async function(){
-    const questions = await Question.find({answered:false});
+questionsSchema.statics.getAllQuestions = async function(n){
+    console.log('fytr',n)
+    const questions = await Question.find().limit(parseInt(n));
     return questions
 }
 questionsSchema.methods.raiseRequest = async function(){

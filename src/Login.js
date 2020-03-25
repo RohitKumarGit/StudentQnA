@@ -81,7 +81,7 @@ export default class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
+    console.log("logging")
     const emailElement = event.target.email;
     const passwordElement = event.target.password;
 
@@ -142,7 +142,7 @@ export default class Login extends Component {
       <div class="ui grid middle aligned main-content">
         {/* <div class="row"> */}
         <div class="column">
-          <form class="ui form">
+          <form class="ui form" onSubmit={this.handleSubmit}>
             <h2 class="ui header">Login</h2>
             <div class="field">
               <label>Email</label>

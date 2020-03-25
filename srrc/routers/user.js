@@ -1,5 +1,10 @@
 const Router = new require('express').Router();
 const User = require('../models/user');
+Router.get('/topexperts',async (req,res)=>{
+    const users =await User.find({role:'expert'}).sort({numberOfQuestions:-1});
+   console.log(users)
+    res.send()
+})
 Router.post('/createuser',async (req,res)=>{
     const error =await User.createUser(req.body)
     res.send(error);

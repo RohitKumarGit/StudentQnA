@@ -9,8 +9,11 @@ Router.get('/questions/:email',async (req,res)=>{
     const questions = await Questions.getQuestions(req.params.email);
     res.send(questions);
 });
-Router.get('/questions',async (req,res)=>{
-    const questions = await Questions.getAllQuestions();
+Router.get('/questionss/:n',async (req,res)=>{
+    console.log(req.params)
+    console.log("geiing question")
+    const questions = await Questions.getAllQuestions(req.params.n);
+    console.log("ques",questions)
     res.send(questions);
 });
 Router.post('/question',async (req,res)=>{

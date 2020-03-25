@@ -4,9 +4,49 @@ import React, { Component } from "react";
 import "./ExpertProfile.css";
 
 import { render } from "react-dom";
-// import "./ExpertProfile.js";
 
+// import "./ExpertProfile.js";
+const firebase = require('firebase');
+const axios = require('axios')
 export default class ExpertProfile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      role: "student",
+      colleges: ["A", "B", "C"],
+      user:{},
+      TopThreeExperts:[],
+     
+    }
+  }
+  async fillData(){
+    const topexperts = await axios.get('/topexperts');
+    console.log(topexperts);
+    this.setState({TopThreeExperts:topexperts.data})
+    // here are the questions
+    const n = 2 // no. of questions you want in one page
+    const questions = await axios.get('/questionss/'+n);
+    console.log(questions.data) // response.data has all the questions
+    // if questions.data.answered == true , then that question has been answered
+    
+    
+  }
+    componentDidMount(prevProps, prevState, snapshot){
+      var p=this;
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          p.setState({user:user})
+          console.log("logged in")
+          console.log(p.state.user)
+          p.fillData();
+
+        } else {
+          // No user is signed in.
+          alert("log in again")
+        }
+      });
+    }
   render() {
     return (
       <>
@@ -93,7 +133,7 @@ export default class ExpertProfile extends Component {
                         <i class="comment icon"></i> 3
                       </a>
                       <button class="compact ui primary button button--answer">
-                        Answer
+                        Answer 
                       </button>
                     </div>
                   </div>
