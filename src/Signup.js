@@ -1,9 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
+import {
+  Form,
+  Checkbox,
+  Input,
+  Radio,
+  Select,
+  TextArea
+} from "semantic-ui-react";
+
 import { Link } from "react-router-dom";
 
 const firebase = require("firebase");
 const axios = require("axios");
-export default class Signup extends React.Component {
+
+export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +22,7 @@ export default class Signup extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleOptionChange = this.handleChange.bind(this);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -28,9 +38,9 @@ export default class Signup extends React.Component {
     });
   }
 
-  handleOptionChange(event) {
+  handleOptionChange(e, { value }) {
     this.setState({
-      role: event.target.value
+      role: value
     });
   }
 
@@ -107,40 +117,49 @@ export default class Signup extends React.Component {
     let formContent;
 
     if (this.state.role === "student") {
+      const classes = [
+        { key: "m", text: "Male", value: "male" },
+        { key: "f", text: "Female", value: "female" },
+        { key: "o", text: "Other", value: "other" }
+      ];
+
       formContent = (
-        <div class="field">
-          <label>Country</label>
-          <select class="ui search dropdown">
-            <option value="">Select Country</option>
-            <option value="XI">XI</option>
-            <option value="XII">XII</option>
-            <option value="X">X</option>
-          </select>
-        </div>
+        // <div class="field">
+        //   <label>Country</label>
+        //   <select class="ui search dropdown">
+        //     <option value="">Select Country</option>
+        //     <option value="XI">XI</option>
+        //     <option value="XII">XII</option>
+        //     <option value="X">X</option>
+        //   </select>
+        // </div>
+        <Form.Group>
+          <Form.Select label="Class" options={classes} />
+        </Form.Group>
       );
     } else {
+      const years = [
+        { text: 2020, value: 2020 },
+        { text: 2019, value: 2019 },
+        { text: 2018, value: 2018 },
+        { text: 2017, value: 2017 }
+      ];
+
       formContent = (
         <>
-          <div class="form__group">
-            <label class="form__label">College</label>
-            <input class="form__input" type="text" name="college" />
-          </div>
+          <Form.Field>
+            <label>College</label>
+            <Input />
+          </Form.Field>
 
-          <div class="form__group">
-            <label class="form__label">Branch</label>
-            <input class="form__input" type="text" name="branch" />
-          </div>
+          <Form.Field>
+            <label>Branch</label>
+            <Input />
+          </Form.Field>
 
-          <div class="form__group">
-            <label class="form__label">Year of admission</label>
-            <select id="year" className="form__input">
-              <option value="volvo">2020</option>
-              <option value="volvo">2019</option>
-              <option value="saab">2017</option>
-              <option value="mercedes">2016</option>
-              <option value="mercedes">2015</option>
-            </select>
-          </div>
+          <Form.Group>
+            <Form.Select label="Year of admission" options={years} />
+          </Form.Group>
         </>
       );
     }
@@ -151,55 +170,61 @@ export default class Signup extends React.Component {
         <div class="column">
           <form class="ui form">
             <h2 class="ui header">Sign Up</h2>
-            <div class="inline fields">
-              <label for="fruit">Please select your role:</label>
-              <div class="field">
-                <div class="ui radio checkbox">
-                  <input
-                    type="radio"
-                    name="student"
-                    tabindex="0"
-                    class="hidden"
-                  />
-                  <label>Student</label>
-                </div>
-              </div>
-              <div class="field">
-                <div class="ui radio checkbox">
-                  <input
-                    type="radio"
-                    name="expert"
-                    tabindex="0"
-                    class="hidden"
-                  />
-                  <label>Expert</label>
-                </div>
-              </div>
-            </div>
+
+            <Form.Group className="fields--radio">
+              <Form.Field>
+                <label>Please enter your role:</label>
+              </Form.Field>
+
+              <Form.Field>
+                <Radio
+                  label="Student"
+                  name="role"
+                  value="student"
+                  checked={this.state.role === "student"}
+                  onChange={this.handleOptionChange}
+                />
+              </Form.Field>
+
+              <Form.Field>
+                <Radio
+                  label="Expert"
+                  name="role"
+                  value="expert"
+                  checked={this.state.role === "expert"}
+                  onChange={this.handleOptionChange}
+                />
+              </Form.Field>
+            </Form.Group>
 
             {formContent}
 
-            <div class="field">
+            <Form.Field>
               <label>Name</label>
-              <input type="email" name="email" />
-            </div>
-            <div class="field">
+              <Input />
+            </Form.Field>
+
+            <Form.Field>
               <label>Email</label>
-              <input type="password" name="password" />
-            </div>
-            <div class="field">
+              <Input type="email" />
+            </Form.Field>
+
+            <Form.Field>
               <label>Password</label>
-              <input type="password" name="password" />
-            </div>
-            <div class="field">
+              <Input type="password" />
+            </Form.Field>
+
+            <Form.Field>
               <label>Confirm Password</label>
-              <input type="password" name="password" />
-            </div>
+              <Input type="password" />
+            </Form.Field>
+
             <button class="fluid ui primary button" type="submit">
               Sign up
             </button>
+
             <p>
-              Already have an account? <a href="/login">Login</a>.
+              Already have an account? <Link to="/login">Login</Link>.
             </p>
           </form>
         </div>

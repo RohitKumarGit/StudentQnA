@@ -156,7 +156,7 @@ export default class Login extends Component {
             </Form.Field>
 
             <Form.Field>
-              <a href="/password-reset">I forgot my password</a>
+              <Link to="/password-reset">I forgot my password</Link>
             </Form.Field>
 
             <Button fluid primary type="submit">
@@ -164,7 +164,7 @@ export default class Login extends Component {
             </Button>
 
             <p>
-              Don't have an account? <a href="/signup">Sign up</a>.
+              Don't have an account? <Link to="/signup">Sign up</Link>.
             </p>
           </Form>
         </Grid.Column>
