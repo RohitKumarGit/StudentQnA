@@ -7,6 +7,10 @@ import { render } from "react-dom";
 // import "./ExpertProfile.js";
 
 export default class ExpertProfile extends Component {
+  componentDidMount() {
+    console.log("mounted");
+  }
+
   render() {
     return (
       <>
