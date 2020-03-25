@@ -28,7 +28,7 @@ export default class ExpertProfile extends Component {
     const questions = await axios.get('/questionss/'+n);
     console.log(questions.data) // response.data has all the questions
     // if questions.data.answered == true , then that question has been answered
-    
+    // all the questions have a "date" field , to use this user "date.toDateString()"
     
   }
     componentDidMount(prevProps, prevState, snapshot){
