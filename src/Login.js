@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import { Grid, Form, Header, Button } from "semantic-ui-react";
+import { Grid, Form, Header, Button, Input } from "semantic-ui-react";
 
 const axios = require("axios");
 const firebase = require("firebase");
@@ -83,7 +83,7 @@ export default class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("logging")
+    console.log("logging");
     const emailElement = event.target.email;
     const passwordElement = event.target.password;
 
@@ -140,28 +140,37 @@ export default class Login extends Component {
 
   render() {
     return (
-      <Grid middle aligned verticalAlign="middle" className="main-content" onSubmit={this.handleSubmit}>
+      <Grid verticalAlign="middle" className="main-content">
         <Grid.Column>
-          <Form>
+          <Form onSubmit={this.handleSubmit}>
             <Header as="h2">Login</Header>
 
             <Form.Field>
               <label>Email</label>
-              <input type="email" name="email" />
+              <Input type="text" name="email" onChange={this.handleChange} />
+              <span class="form__helper">{this.state.emailErr}</span>
             </Form.Field>
 
             <Form.Field>
               <label>Password</label>
-              <input type="password" name="password" />
+              <Input
+                type="password"
+                name="password"
+                onChange={this.handleChange}
+              />
+              <span class="form__helper">{this.state.passwordErr}</span>
             </Form.Field>
 
             <Form.Field>
               <Link to="/password-reset">I forgot my password</Link>
             </Form.Field>
 
-            <Button fluid primary type="submit">
-              Login
-            </Button>
+            <Form.Field>
+              <Button fluid primary type="submit">
+                Login
+              </Button>
+              <span class="form__helper">{this.state.formErr}</span>
+            </Form.Field>
 
             <p>
               Don't have an account? <Link to="/signup">Sign up</Link>.
