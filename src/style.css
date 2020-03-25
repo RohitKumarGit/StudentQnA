@@ -71,3 +71,8 @@ body {
   float: right;
   margin: 0.78571429em;
 }
+
+a.ui.label {
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
+}

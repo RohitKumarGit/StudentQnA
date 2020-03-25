@@ -1,53 +1,70 @@
 import React, { Component } from "react";
+import { render } from "react-dom";
+import { Dropdown } from "semantic-ui-react";
 
-// import $ from "jquery";
 import "./ExpertProfile.css";
 
-import { render } from "react-dom";
+const firebase = require("firebase");
+const axios = require("axios");
 
-// import "./ExpertProfile.js";
-const firebase = require('firebase');
-const axios = require('axios')
 export default class ExpertProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       role: "student",
       colleges: ["A", "B", "C"],
-      user:{},
-      TopThreeExperts:[],
-     
-    }
+      user: {},
+      TopThreeExperts: []
+    };
   }
-  async fillData(){
-    const topexperts = await axios.get('/topexperts');
+
+  async fillData() {
+    const topexperts = await axios.get("/topexperts");
     console.log(topexperts);
-    this.setState({TopThreeExperts:topexperts.data})
+    this.setState({ TopThreeExperts: topexperts.data });
     // here are the questions
-    const n = 2 // no. of questions you want in one page
-    const questions = await axios.get('/questionss/'+n);
-    console.log(questions.data) // response.data has all the questions
+    const n = 2; // no. of questions you want in one page
+    const questions = await axios.get("/questionss/" + n);
+    console.log(questions.data); // response.data has all the questions
     // if questions.data.answered == true , then that question has been answered
     // all the questions have a "date" field , to use this user "date.toDateString()"
-    
   }
-    componentDidMount(prevProps, prevState, snapshot){
-      var p=this;
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          p.setState({user:user})
-          console.log("logged in")
-          console.log(p.state.user)
-          p.fillData();
 
-        } else {
-          // No user is signed in.
-          alert("log in again")
-        }
-      });
-    }
+  componentDidMount(prevProps, prevState, snapshot) {
+    firebase.auth().onAuthStateChanged(user => {
+      // todo: remove !user
+      if (user) {
+        // User is signed in.
+        this.setState({ user: user });
+        console.log("logged in");
+        console.log(this.state.user);
+        this.fillData();
+      } else {
+        // No user is signed in.
+        alert("log in again");
+      }
+    });
+  }
+
   render() {
+    const friendOptions = [
+      {
+        key: "Latest",
+        text: "Latest",
+        value: "Latest"
+      },
+      {
+        key: "Oldest",
+        text: "Oldest",
+        value: "Oldest"
+      },
+      {
+        key: "Most Popular",
+        text: "Most Popular",
+        value: "Most Popular"
+      }
+    ];
+
     return (
       <>
         <div class="ui container">
@@ -90,10 +107,14 @@ export default class ExpertProfile extends Component {
               <button class="ui button">Unanswered</button>
               <button class="ui button">Answered</button>
 
-              <div class="ui dropdown dropdown--date">
-                <div class="text">Order by: Latest</div>
-                <i class="dropdown icon"></i>
-              </div>
+              <span class="dropdown--date">
+                Order by:{" "}
+                <Dropdown
+                  inline
+                  options={friendOptions}
+                  defaultValue={friendOptions[0].value}
+                />
+              </span>
 
               <div class="ui divider"></div>
 
@@ -133,7 +154,7 @@ export default class ExpertProfile extends Component {
                         <i class="comment icon"></i> 3
                       </a>
                       <button class="compact ui primary button button--answer">
-                        Answer 
+                        Answer
                       </button>
                     </div>
                   </div>

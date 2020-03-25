@@ -48,6 +48,7 @@ export default class Signup extends Component {
     event.preventDefault();
 
     console.log("signing..");
+
     var req;
     if (this.state.role == "student") {
       console.log("student");
@@ -134,7 +135,7 @@ export default class Signup extends Component {
         //   </select>
         // </div>
         <Form.Group>
-          <Form.Select label="Class" options={classes} />
+          <Form.Select id="class" label="Class" options={classes} />
         </Form.Group>
       );
     } else {
@@ -149,16 +150,16 @@ export default class Signup extends Component {
         <>
           <Form.Field>
             <label>College</label>
-            <Input />
+            <Input name="college" />
           </Form.Field>
 
           <Form.Field>
             <label>Branch</label>
-            <Input />
+            <Input name="branch" />
           </Form.Field>
 
           <Form.Group>
-            <Form.Select label="Year of admission" options={years} />
+            <Form.Select id="year" label="Year of admission" options={years} />
           </Form.Group>
         </>
       );
@@ -168,7 +169,7 @@ export default class Signup extends Component {
       <div class="ui grid middle aligned main-content">
         {/* <div class="row"> */}
         <div class="column">
-          <form class="ui form">
+          <form class="ui form" onSubmit={this.handleSubmit}>
             <h2 class="ui header">Sign Up</h2>
 
             <Form.Group className="fields--radio">
@@ -201,23 +202,27 @@ export default class Signup extends Component {
 
             <Form.Field>
               <label>Name</label>
-              <Input />
+              <Input name="name" />
             </Form.Field>
 
             <Form.Field>
               <label>Email</label>
-              <Input type="email" />
+              <Input name="email" type="email" />
             </Form.Field>
 
             <Form.Field>
               <label>Password</label>
-              <Input type="password" />
+              <Input name="password" type="password" />
             </Form.Field>
 
             <Form.Field>
               <label>Confirm Password</label>
-              <Input type="password" />
+              <Input name="confirm-password" type="password" />
             </Form.Field>
+
+            {/* <Form.Field> */}
+            {/* <Input type="submit" value="login" /> */}
+            {/* </Form.Field> */}
 
             <button class="fluid ui primary button" type="submit">
               Sign up
