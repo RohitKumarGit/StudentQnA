@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
     yearOfAdmission:{
         type:String,
         default:"none"
+    },
+    numberOfQuestions:{
+        type:Number,
+        default:0
     }
 });
 
@@ -62,5 +66,11 @@ userSchema.statics.deductPoint = async function(email,point){
     console.log(user)
     await user.save()
 }
+userSchema.statics.addQuestions = async function(email){
+    const user =await User.findOne({email});
+    const temp =user.numberOfQuestions;
+    user.numberOfQuestions = temp + 1;
+    user.save()
+;}
 const User =new  mongoose.model('User',userSchema);
 module.exports = User

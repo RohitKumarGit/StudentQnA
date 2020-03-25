@@ -14,11 +14,17 @@ const questionsSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
-   
+    points:{
+        type:Number
+    },
+    nAnswer:{
+        type:Number,
+        default:0
+    },
     question:String
 });
-questionsSchema.statics.postQuestion = async function(question,email){
-    const questionn = new Question({question:question,email:email});
+questionsSchema.statics.postQuestion = async function(question,email,points){
+    const questionn = new Question({question:question,email:email,points:points});
     await questionn.save();
     
 };
