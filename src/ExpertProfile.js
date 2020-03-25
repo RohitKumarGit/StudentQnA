@@ -1,6 +1,7 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { render } from "react-dom";
-import { Dropdown } from "semantic-ui-react";
+import { Dropdown, Placeholder } from "semantic-ui-react";
 
 import "./ExpertProfile.css";
 
@@ -11,10 +12,12 @@ export default class ExpertProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       role: "student",
       colleges: ["A", "B", "C"],
       user: {},
-      TopThreeExperts: []
+      TopThreeExperts: [],
+      questions: ""
     };
   }
 
@@ -25,9 +28,13 @@ export default class ExpertProfile extends Component {
     // here are the questions
     const n = 2; // no. of questions you want in one page
     const questions = await axios.get("/questionss/" + n);
-    console.log(questions.data); // response.data has all the questions
+    // console.log(questions.data);  // response.data has all the questions
     // if questions.data.answered == true , then that question has been answered
     // all the questions have a "date" field , to use this user "date.toDateString()"
+
+    // let questionElements = [];
+    // console.log(questionElements);
+    this.setState({ loading: false, questions: questions.data });
   }
 
   componentDidMount(prevProps, prevState, snapshot) {
@@ -119,7 +126,7 @@ export default class ExpertProfile extends Component {
               <div class="ui divider"></div>
 
               <div class="ui divided items">
-                <div class="item">
+                {/* <div class="item">
                   <div class="content">
                     <div class="meta">
                       <span>User asked 1 hour ago</span>
@@ -222,7 +229,45 @@ export default class ExpertProfile extends Component {
                       </button>
                     </div>
                   </div>
-                </div>
+                </div> */}
+
+                {this.state.loading ? (
+                  <Placeholder>
+                    <Placeholder.Header>
+                      <Placeholder.Line />
+                    </Placeholder.Header>
+                    <Placeholder.Paragraph>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Paragraph>
+                  </Placeholder>
+                ) : (
+                  <>
+                    {_.map(this.state.questions, question => (
+                      <div class="item">
+                        <div class="content">
+                          <div class="meta">
+                            <span>User asked 1 hour ago</span>
+                          </div>
+                          <div class="header">{question.question}</div>
+                          <div class="meta">
+                            <a class="ui label">
+                              <i class="dollar sign icon"></i>1
+                            </a>
+                            <a class="ui label">
+                              <i class="comment icon"></i> 1
+                            </a>
+                            <button class="compact ui primary button button--answer">
+                              Answer
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                )}
+
+                {/* {questionElements} */}
               </div>
 
               <div class="ui divider"></div>
