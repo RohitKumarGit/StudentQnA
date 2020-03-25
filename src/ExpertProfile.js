@@ -1,7 +1,19 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { render } from "react-dom";
-import { Dropdown, Placeholder } from "semantic-ui-react";
+// import { render } from "react-dom";
+import {
+  Container,
+  Grid,
+  Item,
+  Header,
+  Button,
+  Divider,
+  Dropdown,
+  Placeholder,
+  Label,
+  Icon,
+  Pagination
+} from "semantic-ui-react";
 
 import "./ExpertProfile.css";
 
@@ -12,7 +24,6 @@ export default class ExpertProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       role: "student",
       colleges: ["A", "B", "C"],
       user: {},
@@ -33,8 +44,8 @@ export default class ExpertProfile extends Component {
     // all the questions have a "date" field , to use this user "date.toDateString()"
 
     // let questionElements = [];
-    // console.log(questionElements);
-    this.setState({ loading: false, questions: questions.data });
+    console.log(questions.data);
+    this.setState({ questions: questions.data });
   }
 
   componentDidMount(prevProps, prevState, snapshot) {
@@ -54,6 +65,12 @@ export default class ExpertProfile extends Component {
   }
 
   render() {
+    const topExperts = [
+      { name: "User 1", answers: 100 },
+      { name: "User 2", answers: 55 },
+      { name: "User 3", answers: 28 }
+    ];
+
     const friendOptions = [
       {
         key: "Latest",
@@ -74,45 +91,32 @@ export default class ExpertProfile extends Component {
 
     return (
       <>
-        <div class="ui container">
-          <div class="ui grid">
-            <div class="four wide column">
-              <div class="ui items">
-                <h3 class="ui header">Leaderboard</h3>
-                <div class="item">
-                  <a class="ui mini image">
-                    <img src="https://semantic-ui.com/images/avatar/large/justen.jpg" />
-                  </a>
-                  <div class="middle aligned content">
-                    <h5 class="ui header">User</h5>
-                    <p>100 answers</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="ui mini image">
-                    <img src="https://semantic-ui.com/images/avatar/large/justen.jpg" />
-                  </a>
-                  <div class="middle aligned content">
-                    <h5 class="ui header">User</h5>
-                    <p>55 answers</p>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="ui mini image">
-                    <img src="https://semantic-ui.com/images/avatar/large/justen.jpg" />
-                  </a>
-                  <div class="middle aligned content">
-                    <h5 class="ui header">User</h5>
-                    <p>28 answers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <Container>
+          <Grid>
+            <Grid.Column width={4}>
+              <Item.Group>
+                <Header as="h3">Leaderboard</Header>
 
-            <div class="twelve wide column">
-              <button class="ui primary button">All Q&A</button>
-              <button class="ui button">Unanswered</button>
-              <button class="ui button">Answered</button>
+                {_.map(topExperts, expert => (
+                  <Item>
+                    <Item.Image
+                      src="https://semantic-ui.com/images/avatar/large/justen.jpg"
+                      size="mini"
+                    />
+
+                    <Item.Content>
+                      <Header as="h5">{expert.name}</Header>
+                      <p>{expert.answers} answers</p>
+                    </Item.Content>
+                  </Item>
+                ))}
+              </Item.Group>
+            </Grid.Column>
+
+            <Grid.Column width={12}>
+              <Button primary>All Q&A</Button>
+              <Button>Unanswered</Button>
+              <Button>Answered</Button>
 
               <span class="dropdown--date">
                 Order by:{" "}
@@ -123,115 +127,10 @@ export default class ExpertProfile extends Component {
                 />
               </span>
 
-              <div class="ui divider"></div>
+              <Divider />
 
-              <div class="ui divided items">
-                {/* <div class="item">
-                  <div class="content">
-                    <div class="meta">
-                      <span>User asked 1 hour ago</span>
-                    </div>
-                    <div class="header">
-                      How does the choice of housing affect collage students?
-                    </div>
-                    <div class="meta">
-                      <a class="ui label">
-                        <i class="dollar sign icon"></i>1
-                      </a>
-                      <a class="ui label">
-                        <i class="comment icon"></i> 0
-                      </a>
-                      <button class="compact ui primary button button--answer">
-                        Answer
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="content">
-                    <div class="meta">
-                      <span>User asked 1 hour ago</span>
-                    </div>
-                    <div class="header">Is a college degree necessary?</div>
-                    <div class="meta">
-                      <a class="ui label">
-                        <i class="dollar sign icon"></i>5
-                      </a>
-                      <a class="ui label">
-                        <i class="comment icon"></i> 3
-                      </a>
-                      <button class="compact ui primary button button--answer">
-                        Answer
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="content">
-                    <div class="meta">
-                      <span>User asked 1 hour ago</span>
-                    </div>
-                    <div class="header">
-                      How much writing and reading are expected?
-                    </div>
-                    <div class="meta">
-                      <a class="ui label">
-                        <i class="dollar sign icon"></i>1
-                      </a>
-                      <a class="ui label">
-                        <i class="comment icon"></i> 1
-                      </a>
-                      <button class="compact ui primary button button--answer">
-                        Answer
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="content">
-                    <div class="meta">
-                      <span>User asked 1 hour ago</span>
-                    </div>
-                    <div class="header">
-                      What type of tutoring program do you have?
-                    </div>
-                    <div class="meta">
-                      <a class="ui label">
-                        <i class="dollar sign icon"></i>1
-                      </a>
-                      <a class="ui label">
-                        <i class="comment icon"></i> 1
-                      </a>
-                      <button class="compact ui primary button button--answer">
-                        Answer
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="content">
-                    <div class="meta">
-                      <span>User asked 1 hour ago</span>
-                    </div>
-                    <div class="header">
-                      What time management strategies will help a college
-                      student?
-                    </div>
-                    <div class="meta">
-                      <a class="ui label">
-                        <i class="dollar sign icon"></i>1
-                      </a>
-                      <a class="ui label">
-                        <i class="comment icon"></i> 1
-                      </a>
-                      <button class="compact ui primary button button--answer">
-                        Answer
-                      </button>
-                    </div>
-                  </div>
-                </div> */}
-
-                {this.state.loading ? (
+              <Item.Group divided>
+                {this.state.questions.length === 0 ? (
                   <Placeholder>
                     <Placeholder.Header>
                       <Placeholder.Line />
@@ -244,47 +143,44 @@ export default class ExpertProfile extends Component {
                 ) : (
                   <>
                     {_.map(this.state.questions, question => (
-                      <div class="item">
-                        <div class="content">
-                          <div class="meta">
-                            <span>User asked 1 hour ago</span>
-                          </div>
-                          <div class="header">{question.question}</div>
-                          <div class="meta">
-                            <a class="ui label">
-                              <i class="dollar sign icon"></i>1
-                            </a>
-                            <a class="ui label">
-                              <i class="comment icon"></i> 1
-                            </a>
-                            <button class="compact ui primary button button--answer">
+                      <Item>
+                        <Item.Content>
+                          <Item.Meta>User asked 1 hour ago</Item.Meta>
+
+                          <Item.Header>{question.question}</Item.Header>
+
+                          <Item.Meta>
+                            <Label>
+                              <Icon name="dollar sign" />1
+                            </Label>
+                            <Label>
+                              <Icon name="comment" /> 1
+                            </Label>
+
+                            <Button primary compact className="button--answer">
                               Answer
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+                            </Button>
+                          </Item.Meta>
+                        </Item.Content>
+                      </Item>
                     ))}
                   </>
                 )}
+              </Item.Group>
 
-                {/* {questionElements} */}
-              </div>
+              <Divider />
 
-              <div class="ui divider"></div>
-
-              <div class="ui pagination menu">
-                <a class="disabled item">
-                  <i class="angle left icon"></i>
-                </a>
-                <a class="active item">1</a>
-                <a class="item">2</a>
-                <a class="item">
-                  <i class="angle right icon"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+              <Pagination
+                defaultActivePage={1}
+                totalPages={10}
+                firstItem={null}
+                lastItem={null}
+                prevItem={{ content: <Icon name="angle left" />, icon: true }}
+                nextItem={{ content: <Icon name="angle right" />, icon: true }}
+              />
+            </Grid.Column>
+          </Grid>
+        </Container>
       </>
     );
   }

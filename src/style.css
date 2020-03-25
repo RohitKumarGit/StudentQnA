@@ -89,6 +89,10 @@ body {
 
 /* EXPERT PROFILE */
 
+.ui.container {
+  margin-top: 30px;
+}
+
 .dropdown--date {
   float: right;
   margin: 0.78571429em;
