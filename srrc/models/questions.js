@@ -4,6 +4,7 @@ const questionsSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
+    name:String,
     date : Date,
     raise_request:{
         type:Boolean,
@@ -23,8 +24,8 @@ const questionsSchema = new mongoose.Schema({
     },
     question:String
 });
-questionsSchema.statics.postQuestion = async function(question,email,points){
-    const questionn = new Question({question:question,email:email,points:points});
+questionsSchema.statics.postQuestion = async function(question,email,points,name){
+    const questionn = new Question({question:question,email:email,points:points,name:name});
     await questionn.save();
     
 };

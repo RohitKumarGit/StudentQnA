@@ -43,6 +43,7 @@ userSchema.statics.createUser = async function(details){
     const ms = await User.find({email:details.email});
     console.log('yes',ms);
     if(ms.length == 0){
+        
         const user = new User(details);
         await user.save()
         console.log("no error")

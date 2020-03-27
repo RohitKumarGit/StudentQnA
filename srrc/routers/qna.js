@@ -22,7 +22,7 @@ Router.post("/question", async (req, res) => {
   const q = req.body.question;
   console.log(q);
   console.log(req.body.email);
-  await Questions.postQuestion(q, req.body.email);
+  await Questions.postQuestion(q, req.body.email,req.body.name);
 
   res.send();
 });

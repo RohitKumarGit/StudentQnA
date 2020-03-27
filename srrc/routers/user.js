@@ -1,12 +1,13 @@
 const Router = new require("express").Router();
 const User = require("../models/user");
-
+const path = require('path');
 Router.get("/topexperts", async (req, res) => {
+  console.log("finding experts")
   const users = await User.find({ role: "expert" }).sort({
     numberOfQuestions: -1
   });
-  console.log(users);
-  res.send();
+  //console.log(users);
+  res.send(users);
 });
 
 Router.post("/createuser", async (req, res) => {
@@ -26,4 +27,9 @@ Router.post("/deduct", async (req, res) => {
   User.deductPoint(req.body.email, req.body.points);
   res.send();
 });
+Router.get('/profiles/:id',async (req,res)=>{
+  console.log("sending profile picture");
+   await res.sendFile(path.join(__dirname,'../../public/'+req.params.id+'.png'))
+});
+
 module.exports = Router;

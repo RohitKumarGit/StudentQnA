@@ -28,13 +28,14 @@ export default class ExpertProfile extends Component {
       colleges: ["A", "B", "C"],
       user: {},
       TopThreeExperts: [],
-      questions: ""
+      questions: "",
+      
     };
   }
 
   async fillData() {
     const topexperts = await axios.get("/topexperts");
-    console.log(topexperts);
+    
     this.setState({ TopThreeExperts: topexperts.data });
     // here are the questions
     const n = 5; // no. of questions you want in one page
@@ -97,16 +98,16 @@ export default class ExpertProfile extends Component {
               <Item.Group>
                 <Header as="h3">Leaderboard</Header>
 
-                {_.map(topExperts, expert => (
+                {_.map(this.state.TopThreeExperts, expert => (
                   <Item>
                     <Item.Image
-                      src="https://semantic-ui.com/images/avatar/large/justen.jpg"
+                      src={expert.profile}
                       size="mini"
                     />
 
                     <Item.Content>
                       <Header as="h5">{expert.name}</Header>
-                      <p>{expert.answers} answers</p>
+                      <p>{expert.numberOfQuestions} answers</p>
                     </Item.Content>
                   </Item>
                 ))}
@@ -145,7 +146,7 @@ export default class ExpertProfile extends Component {
                     {_.map(this.state.questions, question => (
                       <Item>
                         <Item.Content>
-                          <Item.Meta>User asked 1 hour ago</Item.Meta>
+                          <Item.Meta>{question.name} asked 1 hour ago</Item.Meta>
 
                           <Item.Header>{question.question}</Item.Header>
 
