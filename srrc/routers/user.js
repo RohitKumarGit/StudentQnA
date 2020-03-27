@@ -1,7 +1,9 @@
 const Router = new require("express").Router();
 const User = require("../models/user");
 const path = require('path');
-Router.get("/topexperts", async (req, res) => {
+const auth =require('../middlewares/auth')
+
+Router.get("/topexperts", auth,async (req, res) => {
   console.log("finding experts")
   const users = await User.find({ role: "expert" }).sort({
     numberOfQuestions: -1
@@ -9,7 +11,6 @@ Router.get("/topexperts", async (req, res) => {
   //console.log(users);
   res.send(users);
 });
-
 Router.post("/createuser", async (req, res) => {
   const error = await User.createUser(req.body);
   res.send(error);

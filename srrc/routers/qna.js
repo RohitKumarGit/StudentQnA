@@ -2,6 +2,16 @@ const Router = new require("express").Router();
 const Answers = require("../models/answers");
 const fs = require("fs").promises;
 const Questions = require("../models/questions");
+var admin = require('firebase-admin');
+
+
+var serviceAccount = require("../../srrc/studentqna-d44ff-firebase-adminsdk-aofw9-edbf07cb95");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://studentqna-d44ff.firebaseio.com"
+});
+const auth = require('../middlewares/auth');
 const User = require("../models/user");
 Router.get("/questions/:email", async (req, res) => {
   console.log(req.params.email);
@@ -9,20 +19,20 @@ Router.get("/questions/:email", async (req, res) => {
   const questions = await Questions.getQuestions(req.params.email);
   res.send(questions);
 });
-Router.get("/questionss/:n", async (req, res) => {
+Router.get("/questionss/:n",auth, async (req, res) => {
   console.log(req.params);
   console.log("geiing question");
   const questions = await Questions.getAllQuestions(req.params.n);
   console.log("ques", questions);
   res.send(questions);
 });
-Router.post("/question", async (req, res) => {
+Router.post("/question",auth, async (req, res) => {
   console.log("run");
   console.log(req.body);
   const q = req.body.question;
   console.log(q);
   console.log(req.body.email);
-  await Questions.postQuestion(q, req.body.email,req.body.name);
+  await Questions.postQuestion(q, req.body.email,req.body.points,req.body.name);
 
   res.send();
 });

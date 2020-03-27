@@ -29,13 +29,16 @@ export default class ExpertProfile extends Component {
       user: {},
       TopThreeExperts: [],
       questions: "",
-      
+      token:''
     };
   }
 
   async fillData() {
+    console.log(this.state.token)
+    axios.defaults.headers.common['Authorization'] = this.state.token;
+  
     const topexperts = await axios.get("/topexperts");
-    
+    console.log(this.state.user);
     this.setState({ TopThreeExperts: topexperts.data });
     // here are the questions
     const n = 2; // no. of questions you want in one page
@@ -57,7 +60,17 @@ export default class ExpertProfile extends Component {
         this.setState({ user: user });
         console.log("logged in");
         console.log(this.state.user);
-        this.fillData();
+       
+        var p=this;
+        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+          // Send token to your backend via HTTPS
+          p.setState({token:idToken});
+          p.fillData();
+          // ...
+        }).catch(function(error) {
+          // Handle error
+        });
+        
       } else {
         // No user is signed in.
         alert("log in again");
