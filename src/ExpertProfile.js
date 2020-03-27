@@ -37,7 +37,7 @@ export default class ExpertProfile extends Component {
     console.log(topexperts);
     this.setState({ TopThreeExperts: topexperts.data });
     // here are the questions
-    const n = 2; // no. of questions you want in one page
+    const n = 5; // no. of questions you want in one page
     const questions = await axios.get("/questionss/" + n);
     // console.log(questions.data);  // response.data has all the questions
     // if questions.data.answered == true , then that question has been answered
@@ -71,7 +71,7 @@ export default class ExpertProfile extends Component {
       { name: "User 3", answers: 28 }
     ];
 
-    const friendOptions = [
+    const orderOptions = [
       {
         key: "Latest",
         text: "Latest",
@@ -122,8 +122,8 @@ export default class ExpertProfile extends Component {
                 Order by:{" "}
                 <Dropdown
                   inline
-                  options={friendOptions}
-                  defaultValue={friendOptions[0].value}
+                  options={orderOptions}
+                  defaultValue={orderOptions[0].value}
                 />
               </span>
 
