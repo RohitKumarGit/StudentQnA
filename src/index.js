@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Comonents
 
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
 import Profile from "./Profile";
-import Error from "./Error";
+import Error from "./pages/Error";
+
 import "./style.css";
 import ExpertProfile from "./ExpertProfile";
 const firebase = require("firebase");

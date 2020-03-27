@@ -28,6 +28,12 @@ export default class ExpertProfile extends Component {
       colleges: ["A", "B", "C"],
       user: {},
       TopThreeExperts: [],
+
+
+
+
+
+
       questions: "",
       token:''
     };
@@ -59,6 +65,10 @@ export default class ExpertProfile extends Component {
         // User is signed in.
         this.setState({ user: user });
         console.log("logged in");
+
+
+
+
         console.log(this.state.user);
        
         var p=this;
