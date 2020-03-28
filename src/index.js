@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ExpertProfile from "./pages/ExpertProfile";
 import Error from "./pages/Error";
+import Settings from "./pages/Settings";
 
 import "./style.css";
 const firebase = require("firebase");
@@ -39,6 +40,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/expert-profile" component={ExpertProfile} />
+          <Route path="/settings" component={Settings} />
           <Route component={Error} />
         </Switch>
       </main>

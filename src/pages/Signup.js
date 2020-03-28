@@ -162,7 +162,7 @@ export default class Signup extends Component {
       <div class="ui grid middle aligned main-content">
         {/* <div class="row"> */}
         <div class="column">
-          <form class="ui form" onSubmit={this.handleSubmit}>
+          <form class="ui form form--center" onSubmit={this.handleSubmit}>
             <h2 class="ui header">Sign Up</h2>
 
             <Form.Group className="fields--radio">

@@ -114,16 +114,27 @@ export default class ExpertProfile extends Component {
               <Item.Group>
                 <Header as="h3">Leaderboard</Header>
 
-                {_.map(this.state.TopThreeExperts, expert => (
-                  <Item>
-                    <Item.Image src={expert.profile} size="mini" />
+                {this.state.TopThreeExperts.length === 0 ? (
+                  <Placeholder>
+                    <Placeholder.Header image>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Header>
+                  </Placeholder>
+                ) : (
+                  <>
+                    {_.map(this.state.TopThreeExperts, expert => (
+                      <Item>
+                        <Item.Image src={expert.profile} size="mini" />
 
-                    <Item.Content>
-                      <Header as="h5">{expert.name}</Header>
-                      <p>{expert.numberOfQuestions} answers</p>
-                    </Item.Content>
-                  </Item>
-                ))}
+                        <Item.Content>
+                          <Header as="h5">{expert.name}</Header>
+                          <p>{expert.numberOfQuestions} answers</p>
+                        </Item.Content>
+                      </Item>
+                    ))}
+                  </>
+                )}
               </Item.Group>
             </Grid.Column>
 

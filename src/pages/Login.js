@@ -142,7 +142,7 @@ export default class Login extends Component {
     return (
       <Grid verticalAlign="middle" className="main-content">
         <Grid.Column>
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit} className="form--center">
             <Header as="h2">Login</Header>
 
             <Form.Field>
