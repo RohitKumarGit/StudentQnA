@@ -5,14 +5,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Comonents
 
 import Navbar from "./components/Navbar";
-import Home from "./Home";
-import Login from "./Login";
-import Signup from "./Signup";
-import Profile from "./Profile";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ExpertProfile from "./pages/ExpertProfile";
 import Error from "./pages/Error";
 
 import "./style.css";
-import ExpertProfile from "./ExpertProfile";
 const firebase = require("firebase");
 
 let firebaseConfig = {
@@ -39,7 +38,6 @@ function App() {
           <Route path="/" component={Home} exact />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/profile/:id" component={Profile} exact />
           <Route path="/expert-profile" component={ExpertProfile} />
           <Route component={Error} />
         </Switch>

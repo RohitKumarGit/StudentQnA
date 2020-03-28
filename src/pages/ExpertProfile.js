@@ -15,8 +15,6 @@ import {
   Pagination
 } from "semantic-ui-react";
 
-import "./ExpertProfile.css";
-
 const firebase = require("firebase");
 const axios = require("axios");
 
@@ -29,20 +27,15 @@ export default class ExpertProfile extends Component {
       user: {},
       TopThreeExperts: [],
 
-
-
-
-
-
       questions: "",
-      token:''
+      token: ""
     };
   }
 
   async fillData() {
-    console.log(this.state.token)
-    axios.defaults.headers.common['Authorization'] = this.state.token;
-  
+    console.log(this.state.token);
+    axios.defaults.headers.common["Authorization"] = this.state.token;
+
     const topexperts = await axios.get("/topexperts");
     console.log(this.state.user);
     this.setState({ TopThreeExperts: topexperts.data });
@@ -66,21 +59,21 @@ export default class ExpertProfile extends Component {
         this.setState({ user: user });
         console.log("logged in");
 
-
-
-
         console.log(this.state.user);
-       
-        var p=this;
-        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-          // Send token to your backend via HTTPS
-          p.setState({token:idToken});
-          p.fillData();
-          // ...
-        }).catch(function(error) {
-          // Handle error
-        });
-        
+
+        var p = this;
+        firebase
+          .auth()
+          .currentUser.getIdToken(/* forceRefresh */ true)
+          .then(function(idToken) {
+            // Send token to your backend via HTTPS
+            p.setState({ token: idToken });
+            p.fillData();
+            // ...
+          })
+          .catch(function(error) {
+            // Handle error
+          });
       } else {
         // No user is signed in.
         alert("log in again");
@@ -123,10 +116,7 @@ export default class ExpertProfile extends Component {
 
                 {_.map(this.state.TopThreeExperts, expert => (
                   <Item>
-                    <Item.Image
-                      src={expert.profile}
-                      size="mini"
-                    />
+                    <Item.Image src={expert.profile} size="mini" />
 
                     <Item.Content>
                       <Header as="h5">{expert.name}</Header>
@@ -169,7 +159,9 @@ export default class ExpertProfile extends Component {
                     {_.map(this.state.questions, question => (
                       <Item>
                         <Item.Content>
-                          <Item.Meta>{question.name} asked 1 hour ago</Item.Meta>
+                          <Item.Meta>
+                            {question.name} asked 1 hour ago
+                          </Item.Meta>
 
                           <Item.Header>{question.question}</Item.Header>
 

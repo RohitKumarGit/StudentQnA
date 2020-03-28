@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Form,
-  Checkbox,
-  Input,
-  Radio,
-  Select,
-  TextArea
-} from "semantic-ui-react";
+import { Form, Input, Radio } from "semantic-ui-react";
 
 import { Link } from "react-router-dom";
 
@@ -50,7 +43,7 @@ export default class Signup extends Component {
     console.log("signing..");
 
     var req;
-    if (this.state.role == "student") {
+    if (this.state.role === "student") {
       console.log("student");
       req = {
         name: event.target.name.value,
