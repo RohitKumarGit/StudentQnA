@@ -53,7 +53,6 @@ export default class ExpertProfile extends Component {
 
   componentDidMount(prevProps, prevState, snapshot) {
     firebase.auth().onAuthStateChanged(user => {
-      // todo: remove !user
       if (user) {
         // User is signed in.
         this.setState({ user: user });

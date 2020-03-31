@@ -9,7 +9,12 @@ import {
   Header,
   Input,
   Button,
-  Divider
+  Divider,
+  Grid,
+  Sidebar,
+  Menu,
+  Icon,
+  Segment
 } from "semantic-ui-react";
 
 export default class Settings extends React.Component {
@@ -20,9 +25,38 @@ export default class Settings extends React.Component {
         render: () => (
           <Tab.Pane>
             <Form>
-              <Header as="h3">Public profile</Header>
+              {/* <Divider /> */}
+
+              <Header as="h2">Public avatar</Header>
+
+              <Form.Field className="avatar-field">
+                <Image src="https://via.placeholder.com/500x500" size="small" />
+
+                <div style={{ marginLeft: "1em" }}>
+                  {/* <label>Upload new avatar</label> */}
+
+                  <div className="file-upload">
+                    <Input type="file" id="file" style={{ display: "none" }} />
+
+                    <label
+                      for="file"
+                      class="ui icon button"
+                      style={{ margin: "0 1rem .75rem 0" }}
+                    >
+                      Choose file...
+                    </label>
+                    <span>No file choosen</span>
+
+                    <span style={{ display: "block" }}>
+                      The maximum file size allowed is 200KB.
+                    </span>
+                  </div>
+                </div>
+              </Form.Field>
 
               <Divider />
+
+              <Header as="h2">Main settings</Header>
 
               <Form.Field>
                 <label>First name</label>
@@ -44,50 +78,62 @@ export default class Settings extends React.Component {
                 <TextArea />
               </Form.Field>
 
-              <Button type="submit">Update profile</Button>
+              <Button type="submit" secondary>
+                Update profile
+              </Button>
+              <Button>Cancel</Button>
             </Form>
           </Tab.Pane>
         )
       },
       {
-        menuItem: "Security",
+        menuItem: "Account",
+        render: () => <Tab.Pane>2FA, Social, Delete</Tab.Pane>
+      },
+      {
+        menuItem: "Password",
         render: () => (
           <Tab.Pane>
-            <Form>
-              <Header as="h3">Change password</Header>
+            <Grid>
+              {/* <Grid.Column width={4}></Grid.Column> */}
+              <Grid.Column width={12}>
+                <Form>
+                  {/* <Divider /> */}
+                  <Header as="h2">Password</Header>
 
-              <Divider />
+                  <Form.Field>
+                    <label>Current password</label>
+                    <Input />
+                  </Form.Field>
 
-              <Form.Field>
-                <label>Old password</label>
-                <Input />
-              </Form.Field>
+                  <Form.Field>
+                    <label>New password</label>
+                    <Input />
+                  </Form.Field>
 
-              <Form.Field>
-                <label>New password</label>
-                <Input />
-              </Form.Field>
+                  <Form.Field>
+                    <label>Confirm new password</label>
+                    <Input />
+                  </Form.Field>
 
-              <Form.Field>
-                <label>Confirm new password</label>
-                <Input />
-              </Form.Field>
-
-              <Button type="submit">Change password</Button>
-            </Form>
+                  <Button type="submit" secondary>
+                    Save password
+                  </Button>
+                </Form>
+              </Grid.Column>
+            </Grid>
           </Tab.Pane>
         )
       }
     ];
 
     return (
-      <div>
+      <>
         <Tab
           menu={{ fluid: true, vertical: true, tabular: false }}
           panes={panes}
           className="settings"
         />
-
         {/* <Form>
           <Image
             src="https://www.rogowaylaw.com/wp-content/uploads/Blank-Employee.jpg"
@@ -120,7 +166,7 @@ export default class Settings extends React.Component {
 
           <Button primary>Update profile</Button>
         </Form> */}
-      </div>
+      </>
     );
   }
 }
