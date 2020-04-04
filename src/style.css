@@ -123,26 +123,6 @@ body {
 }
 
 /* QUESTION*/
-.post__meta {
-  margin: 1.5rem 0 1.5rem 0 !important;
-}
-
-.post-avatar {
-  margin-right: 5px;
-}
-
-.post-author {
-  font-family: Segoe UI;
-  font-weight: 600;
-}
-
-.post-age {
-  font-family: Segoe UI;
-  font-weight: normal;
-  font-size: 14px;
-  color: rgb(140, 140, 140);
-}
-
 .post__desc p {
   font-size: 15px;
   line-height: 1.4;
