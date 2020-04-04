@@ -40,7 +40,7 @@ export default class Settings extends React.Component {
 
                     <label
                       for="file"
-                      class="ui icon button"
+                      class="ui button"
                       style={{ margin: "0 1rem .75rem 0" }}
                     >
                       Choose file...
@@ -59,13 +59,8 @@ export default class Settings extends React.Component {
               <Header as="h2">Main settings</Header>
 
               <Form.Field>
-                <label>First name</label>
-                <Input />
-              </Form.Field>
-
-              <Form.Field>
-                <label>Last name</label>
-                <Input />
+                <label>Name</label>
+                <Input disabled value="ok" />
               </Form.Field>
 
               <Form.Field>

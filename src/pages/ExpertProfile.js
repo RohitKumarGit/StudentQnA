@@ -12,7 +12,7 @@ import {
   Placeholder,
   Label,
   Icon,
-  Pagination
+  Pagination,
 } from "semantic-ui-react";
 
 const firebase = require("firebase");
@@ -28,7 +28,7 @@ export default class ExpertProfile extends Component {
       TopThreeExperts: [],
 
       questions: "",
-      token: ""
+      token: "",
     };
   }
 
@@ -52,7 +52,7 @@ export default class ExpertProfile extends Component {
   }
 
   componentDidMount(prevProps, prevState, snapshot) {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
         this.setState({ user: user });
@@ -64,13 +64,13 @@ export default class ExpertProfile extends Component {
         firebase
           .auth()
           .currentUser.getIdToken(/* forceRefresh */ true)
-          .then(function(idToken) {
+          .then(function (idToken) {
             // Send token to your backend via HTTPS
             p.setState({ token: idToken });
             p.fillData();
             // ...
           })
-          .catch(function(error) {
+          .catch(function (error) {
             // Handle error
           });
       } else {
@@ -84,25 +84,25 @@ export default class ExpertProfile extends Component {
     const topExperts = [
       { name: "User 1", answers: 100 },
       { name: "User 2", answers: 55 },
-      { name: "User 3", answers: 28 }
+      { name: "User 3", answers: 28 },
     ];
 
     const friendOptions = [
       {
         key: "Latest",
         text: "Latest",
-        value: "Latest"
+        value: "Latest",
       },
       {
         key: "Oldest",
         text: "Oldest",
-        value: "Oldest"
+        value: "Oldest",
       },
       {
         key: "Most Popular",
         text: "Most Popular",
-        value: "Most Popular"
-      }
+        value: "Most Popular",
+      },
     ];
 
     return (
@@ -122,7 +122,7 @@ export default class ExpertProfile extends Component {
                   </Placeholder>
                 ) : (
                   <>
-                    {_.map(this.state.TopThreeExperts, expert => (
+                    {_.map(this.state.TopThreeExperts, (expert) => (
                       <Item>
                         <Item.Image src={expert.profile} size="mini" />
 
@@ -166,7 +166,7 @@ export default class ExpertProfile extends Component {
                   </Placeholder>
                 ) : (
                   <>
-                    {_.map(this.state.questions, question => (
+                    {this.state.questions.map((question) => (
                       <Item>
                         <Item.Content>
                           <Item.Meta>
