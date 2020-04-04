@@ -11,10 +11,9 @@ import {
   Button,
   Divider,
   Grid,
-  Sidebar,
-  Menu,
+  Item,
+  Label,
   Icon,
-  Segment
 } from "semantic-ui-react";
 
 export default class Settings extends React.Component {
@@ -25,47 +24,39 @@ export default class Settings extends React.Component {
         render: () => (
           <Tab.Pane>
             <Form>
-              {/* <Divider /> */}
+              <Header as="h2">Profile</Header>
+              <Divider />
 
-              <Header as="h2">Public avatar</Header>
-
-              <Form.Field className="avatar-field">
-                <Image src="https://via.placeholder.com/500x500" size="small" />
-
-                <div style={{ marginLeft: "1em" }}>
-                  {/* <label>Upload new avatar</label> */}
-
-                  <div className="file-upload">
-                    <Input type="file" id="file" style={{ display: "none" }} />
-
-                    <label
-                      for="file"
-                      class="ui button"
-                      style={{ margin: "0 1rem .75rem 0" }}
-                    >
-                      Choose file...
-                    </label>
-                    <span>No file choosen</span>
-
-                    <span style={{ display: "block" }}>
-                      The maximum file size allowed is 200KB.
-                    </span>
-                  </div>
+              <Form.Field>
+                <label>Profile picture</label>
+                <div class="profile-picture">
+                  <Image
+                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+                    size="small"
+                  />
+                  <Button
+                    icon="pencil"
+                    content="Edit"
+                    size="small"
+                    compact
+                    color="black"
+                  />
                 </div>
               </Form.Field>
 
-              <Divider />
-
-              <Header as="h2">Main settings</Header>
+              <Form.Field>
+                <label>First name</label>
+                <Input value="Matthew" />
+              </Form.Field>
 
               <Form.Field>
-                <label>Name</label>
-                <Input disabled value="ok" />
+                <label>Last name</label>
+                <Input value="Lawrence" />
               </Form.Field>
 
               <Form.Field>
                 <label>Email</label>
-                <Input />
+                <Input value="matthew.lawrence@gmail.com" />
               </Form.Field>
 
               <Form.Field>
@@ -79,89 +70,93 @@ export default class Settings extends React.Component {
               <Button>Cancel</Button>
             </Form>
           </Tab.Pane>
-        )
+        ),
       },
       {
         menuItem: "Account",
-        render: () => <Tab.Pane>2FA, Social, Delete</Tab.Pane>
+        render: () => (
+          <Tab.Pane>
+            <Form>
+              <Header as="h2">Two-Factor Authentication</Header>
+              <Divider />
+
+              <Form.Field>
+                <p>Status: Disabled</p>
+                <Button color="green">Enable 2FA</Button>
+              </Form.Field>
+
+              <Header as="h2">Connected accounts</Header>
+              <Divider />
+
+              <Form.Field>
+                <Button icon labelPosition="left" basic>
+                  <Icon name="google" />
+                  Google
+                </Button>
+
+                <Button icon labelPosition="left" basic>
+                  <Icon name="twitter" />
+                  Twitter
+                </Button>
+
+                <Button icon labelPosition="left" basic>
+                  <Icon name="facebook" />
+                  Facebook
+                </Button>
+              </Form.Field>
+
+              <Header as="h2">Delete your account</Header>
+              <Divider />
+
+              <Form.Field>
+                <p>
+                  Once you delete your account, there is no going back. Please
+                  be certain.
+                </p>
+                <Button color="red">Delete your account</Button>
+              </Form.Field>
+            </Form>
+          </Tab.Pane>
+        ),
       },
       {
         menuItem: "Password",
         render: () => (
           <Tab.Pane>
-            <Grid>
-              {/* <Grid.Column width={4}></Grid.Column> */}
-              <Grid.Column width={12}>
-                <Form>
-                  {/* <Divider /> */}
-                  <Header as="h2">Password</Header>
+            <Form>
+              <Header as="h2">Password</Header>
+              <Divider />
 
-                  <Form.Field>
-                    <label>Current password</label>
-                    <Input />
-                  </Form.Field>
+              <Form.Field>
+                <label>Current password</label>
+                <Input />
+              </Form.Field>
 
-                  <Form.Field>
-                    <label>New password</label>
-                    <Input />
-                  </Form.Field>
+              <Form.Field>
+                <label>New password</label>
+                <Input />
+              </Form.Field>
 
-                  <Form.Field>
-                    <label>Confirm new password</label>
-                    <Input />
-                  </Form.Field>
+              <Form.Field>
+                <label>Confirm new password</label>
+                <Input />
+              </Form.Field>
 
-                  <Button type="submit" secondary>
-                    Save password
-                  </Button>
-                </Form>
-              </Grid.Column>
-            </Grid>
+              <Button type="submit" secondary>
+                Save password
+              </Button>
+            </Form>
           </Tab.Pane>
-        )
-      }
+        ),
+      },
     ];
 
     return (
-      <>
-        <Tab
-          menu={{ fluid: true, vertical: true, tabular: false }}
-          panes={panes}
-          className="settings"
-        />
-        {/* <Form>
-          <Image
-            src="https://www.rogowaylaw.com/wp-content/uploads/Blank-Employee.jpg"
-            size="small"
-          />
-
-          <Header as="h3">Public profile</Header>
-
-          <Form.Field>
-            <label>Name</label>
-            <Input />
-          </Form.Field>
-          <Form.Field>
-            <label>Email</label>
-            <Input />
-          </Form.Field>
-
-          <Button primary>Update profile</Button>
-
-          <Header as="h3">Change password</Header>
-
-          <Form.Field>
-            <label>Name</label>
-            <Input />
-          </Form.Field>
-          <Form.Field>
-            <label>Email</label>
-            <Input />
-          </Form.Field>
-
-          <Button primary>Update profile</Button>
-        </Form> */}
-      </>
+      <Tab
+        menu={{ fluid: true, vertical: true, tabular: false }}
+        panes={panes}
+        className="settings"
+      />
     );
   }
 }

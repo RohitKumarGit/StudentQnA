@@ -122,6 +122,16 @@ body {
   display: flex;
 }
 
+.profile-picture {
+  position: relative;
+}
+
+.profile-picture button {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
 /* QUESTION*/
 .post__desc p {
   font-size: 15px;
