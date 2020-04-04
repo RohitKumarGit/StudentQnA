@@ -46,6 +46,7 @@ export default class Question extends React.Component {
                 src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
                 name="Matthew Lawrence"
                 age="4 days ago"
+                bestAnswer
               />
 
               <div class="post__desc">

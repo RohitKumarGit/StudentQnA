@@ -67,7 +67,6 @@ export default class Settings extends React.Component {
               <Button type="submit" secondary>
                 Update profile
               </Button>
-              <Button>Cancel</Button>
             </Form>
           </Tab.Pane>
         ),
